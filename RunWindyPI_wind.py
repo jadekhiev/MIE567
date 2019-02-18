@@ -11,28 +11,29 @@ def initialize_plot():
     plt.plot()
     plt.ylabel('Value at Initial State (5,1)')
     plt.xlabel('Iteration')
-    plt.title("Value Iteration with Changing Gamma")    
+    plt.title("Policy Iteration with Changing Windspeed in Windy Gridworld")
     return plt
 
-# run value iteration code here
+# run policy iteration code here
 gridworld = gw.Gridworld()
 init_vals= {}
 plt = initialize_plot()
-gammaRange = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]
+gamma = 0.9
 finalPolicyDf = pd.DataFrame(index=gridworld.states(), columns=gammaRange)
 
-for gamma in gammaRange:
-    value = vi.ValueIteration(gridworld, gamma)
-    value.value_iteration()
+pRange = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+for p in pRange:
+    policy = pi.PolicyIteration(gridworld, gamma)
+    policy.set_p(p)      #add wind (stochasticity)
+    policy.policy_iteration()
 
     #create plot
-    V = value.get_V()
-    init_vals[gamma] = [V[v][(5,1)] for v in V]
-    plt.plot(init_vals[gamma], label = gamma)
-    
+    V = policy.get_V()
+    init_vals[p] = [V[v][(5,1)] for v in V]
+    plt.plot(init_vals[p], label = p)
     #get final policy for each gamma
     finalPolicyDf[gamma]=pd.DataFrame.from_dict(value.get_pi(), orient='index')[0]
-
+    
 plt.legend()
 plt.show()
 
