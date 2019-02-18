@@ -19,9 +19,10 @@ gridworld = gw.Gridworld()
 init_vals= {}
 plt = initialize_plot()
 p = 0.9
+gammaRange = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]
 finalPolicyDf = pd.DataFrame(index=gridworld.states(), columns=gammaRange)
 
-gammaRange = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]
+
 for gamma in gammaRange:
     policy = pi.PolicyIteration(gridworld, gamma)
     policy.set_p(p)      #add wind (stochasticity)
@@ -32,7 +33,7 @@ for gamma in gammaRange:
     init_vals[gamma] = [V[v][(5,1)] for v in V]
     plt.plot(init_vals[gamma], label = gamma)
     #get final policy for each gamma
-    finalPolicyDf[gamma]=pd.DataFrame.from_dict(value.get_pi(), orient='index')[0]
+    finalPolicyDf[gamma]=pd.DataFrame.from_dict(policy.get_pi(), orient='index')[0]
     
 plt.legend()
 plt.show()

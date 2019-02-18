@@ -31,9 +31,9 @@ for gamma in gammaRange:
     plt.plot(init_vals[gamma], label = gamma)
     
     #get final policy for each gamma
-    finalPolicyDf[gamma]=pd.DataFrame.from_dict(value.get_pi(), orient='index')[0]
+    finalPolicyDf[gamma]=pd.DataFrame.from_dict(policy.get_pi(), orient='index')[0]
 
 plt.legend()
-plt.show()
+plt.show(block=True)
 
 print(finalPolicyDf)

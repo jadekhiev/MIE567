@@ -1,3 +1,4 @@
+import random
 class ValueIteration(object):
 
     def __init__(self, gridworld, gamma):
