@@ -22,7 +22,6 @@ gamma = 0.9
 pRange = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 finalPolicyDf = pd.DataFrame(index=gridworld.states(), columns=pRange)
 
-
 for p in pRange:
     policy = pi.PolicyIteration(gridworld, gamma)
     policy.set_p(p)      #add wind (stochasticity)
@@ -37,5 +36,4 @@ for p in pRange:
     
 plt.legend()
 plt.show()
-
 print(finalPolicyDf)
