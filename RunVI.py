@@ -1,0 +1,36 @@
+import math
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import random
+
+def initialize_plot():
+    plt.plot()
+    plt.ylabel('Value at Initial State (5,1)')
+    plt.xlabel('Iteration')
+    plt.title("Value Iteration with Changing Gamma")    
+    return plt
+
+
+# run value iteration code here
+gridworld = Gridworld()
+value = {}
+init_vals= {}
+plt = initialize_plot()
+poltestDf = pd.DataFrame()
+gammaRange = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]
+finalPolicyDf = pd.DataFrame(index=gridworld.states(), columns=gammaRange)
+for gamma in gammaRange:
+    value = ValueIteration(gridworld, gamma)
+    value.value_iteration()
+
+    #create plot
+    V = value.get_V()
+    init_vals[gamma] = [V[v][(5,1)] for v in V]
+    plt.plot(init_vals[gamma], label = gamma)
+    
+    #get final policy for each gamma
+    finalPolicyDf[gamma]=pd.DataFrame.from_dict(value.get_pi(), orient='index')[0]
+
+plt.legend()
+plt.show()
