@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import random
 from tqdm import tqdm
 import math
+import Flags as fw
 
 # For each algorithm you implement, you should have another Python file that allows to
 # run your experiment. Here, you will have to initialize your domain, and the algorithm
@@ -21,7 +22,7 @@ gamma = 0.99
 epsilon_rng = [0.01, 0.1, 0.25]
 lamda = 1
 
-flags = Flags()
+flags = fw.Flags()
 Q0_vals= {}
 plt = initialize_plot()
 
