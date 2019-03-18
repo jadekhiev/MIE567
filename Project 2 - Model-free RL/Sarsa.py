@@ -1,3 +1,6 @@
+import numpy as np
+import random
+
 class Sarsa:
     def __init__(self, domain, alpha, gamma, epsilon):
     # sets the domain instance, and all relevant parameters for each algorithm 

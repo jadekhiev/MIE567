@@ -1,3 +1,7 @@
+import numpy as np
+import random
+import math
+
 class MonteCarlo:
     def __init__(self, domain, gamma, epsilon):
     # sets the domain instance, and all relevant parameters for each algorithm 

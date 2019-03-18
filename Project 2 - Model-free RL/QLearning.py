@@ -1,8 +1,11 @@
+import numpy as np
+import random
+
 class QLearning:
     def __init__(self, domain, alpha, gamma, epsilon):
     # sets the domain instance, and all relevant parameters for each algorithm 
     # (e.g. learning rate, epsilon, etc.).
-        self.domain = flags
+        self.domain = domain
         self.alpha = alpha
         self.gamma = gamma
         self.epsilon = epsilon

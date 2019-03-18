@@ -5,6 +5,7 @@ import random
 from tqdm import tqdm
 import math
 import Flags as fw
+import TdLambda as TDL
 
 # For each algorithm you implement, you should have another Python file that allows to
 # run your experiment. Here, you will have to initialize your domain, and the algorithm
@@ -27,7 +28,7 @@ Q0_vals= {}
 plt = initialize_plot()
 
 for epsilon in epsilon_rng:
-    td_lambda = TdLambda(flags, alpha, gamma, epsilon, lamda)
+    td_lambda = TDL.TdLambda(flags, alpha, gamma, epsilon, lamda)
     progress = td_lambda.train_trial()
     Q0_vals[epsilon] = progress
     plt.plot(Q0_vals[epsilon], label = epsilon)
