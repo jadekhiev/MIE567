@@ -87,10 +87,9 @@ class Sarsa:
         S = self.state
         A = self.sample_epsilon_greedy()
         
-        while (not terminal) and i < 200:
+        while not terminal and i < 200:
             # take a step
             S_next, reward = self.domain.transition(S, A)
-            terminal = self.domain.is_terminal(self.state)
             # update state and get next action given next state
             self.state = S_next
             A_next = self.sample_epsilon_greedy()
@@ -100,6 +99,9 @@ class Sarsa:
             #td_delta = td_target - Q[S][A]
             self.Q[S][A] += self.alpha * (reward + self.gamma*self.Q[S_next][A_next] - self.Q[S][A])
             
+            terminal = self.domain.is_terminal(self.state)
+            if terminal: break
+                
             S = S_next
             A = A_next
             i += 1
