@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import linprog
 import matplotlib.pyplot as plt
 
+
 class ValueIteration:
     def __init__(self, domain, gamma):
     # An init method that initializes the domain and the discount factor.
@@ -163,10 +164,10 @@ class ValueIteration:
                 break
             self.k += 1
 
-        print("defender")
-        heatmap("defender", self.U[self.k])
-        print("invader")
-        heatmap("invader", self.U[self.k])
+        #print("defender")
+        #rvi.heatmap("defender", self.U[self.k])
+        #print("invader")
+        #rvi.heatmap("invader", self.U[self.k])
             
         for state in self.domain.states():
             self.G[state] = self.compute_payoff(state)

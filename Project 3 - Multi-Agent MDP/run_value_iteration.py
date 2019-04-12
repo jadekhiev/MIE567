@@ -2,6 +2,7 @@ from scipy.stats.kde import gaussian_kde
 import InvaderDefender as id
 import ValueIteration as vi
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot_map(self):
 # A procedure for plotting the final value function(s) as a 2D heatmap.
@@ -76,9 +77,14 @@ gamma = 0.95
 
 value = vi.ValueIteration(invaderdefender, gamma)
 U, pi_p, pi_q, delta = value.value_iteration()
+print("defender")
+heatmap("defender", U)
+print("invader")
+heatmap("invader", U)
 
 plt = initialize_plot("delta")
 plt.plot(delta)
+plt.show()
     
 #    return U, pi_p, pi_q
 
